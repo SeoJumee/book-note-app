@@ -1,23 +1,89 @@
 import Header from '../../components/Header';
 import BookItem from '../../components/BookItem';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import * as S from './style';
 import Textarea from '../../components/Textarea';
 
 export default function Home() {
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    content: '',
+  });
+
+  const [bookList, setBookList] = useState([]);
+
+  useEffect(() => {
+    setBookList(
+      localStorage.getItem('book')
+        ? JSON.parse(localStorage.getItem('book'))
+        : []
+    );
+    console.log(bookList);
+  }, [book]);
+
+  function onChange(e) {
+    const { name, value } = e.target;
+    setBook({ ...book, [name]: value });
+  }
+
+  function onCreate() {
+    const parseBook = localStorage.getItem('book')
+      ? JSON.parse(localStorage.getItem('book'))
+      : [];
+
+    localStorage.setItem('book', JSON.stringify([...parseBook, book]));
+
+    setBook({ title: '', author: '', content: '' });
+
+    alert('등록되었습니다.');
+
+    setBook({
+      title: '',
+      author: '',
+      content: '',
+    });
+  }
+
   return (
     <>
       <Header />
       <S.ItemWrapper>
         <S.TextareaWrapper>
-          <Textarea placeholder="도서명" height="35" />
-          <Textarea placeholder="저자" height="35" />
-          <Textarea placeholder="내용" height="100" />
-          <Button backgroundColor={'#81C147'}>등록</Button>
+          <Textarea
+            name="title"
+            onChange={onChange}
+            value={book.title}
+            placeholder="도서명"
+            height="35"
+          />
+          <Textarea
+            name="author"
+            onChange={onChange}
+            value={book.author}
+            placeholder="저자"
+            height="35"
+          />
+          <Textarea
+            name="content"
+            onChange={onChange}
+            value={book.content}
+            placeholder="내용"
+            height="100"
+          />
+          <Button backgroundColor={'#81C147'} onClick={onCreate}>
+            등록
+          </Button>
         </S.TextareaWrapper>
         <S.BookWrapper>
-          <BookItem />
+          {bookList.map((book, index) => (
+            <BookItem key={index} book={book}>
+              {book.title}
+              {book.author}
+              {book.content}
+            </BookItem>
+          ))}
         </S.BookWrapper>
       </S.ItemWrapper>
     </>
