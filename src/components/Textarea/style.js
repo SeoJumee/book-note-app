@@ -5,7 +5,7 @@ export const Textarea = styled.textarea`
   height: ${(props) => `${props.height}px`};
   resize: none;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
 
   &:focus {
     outline: none;

@@ -7,6 +7,23 @@ export const BookItem = styled.div`
   padding: 20px;
   position: relative;
 
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .author {
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #999999;
+  }
+
+  .content {
+    font-size: 20px;
+  }
+
   svg {
     position: absolute;
     width: 35px;
