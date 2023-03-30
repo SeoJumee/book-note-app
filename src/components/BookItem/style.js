@@ -7,9 +7,13 @@ export const BookItem = styled.div`
   padding: 20px;
   position: relative;
 
-  button {
+  svg {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    width: 35px;
+    height: 35px;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    padding: 5px;
   }
 `;
