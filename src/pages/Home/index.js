@@ -20,7 +20,6 @@ export default function Home() {
         ? JSON.parse(localStorage.getItem('book'))
         : []
     );
-    console.log(bookList);
   }, [book]);
 
   function onChange(e) {
@@ -32,6 +31,11 @@ export default function Home() {
     const parseBook = localStorage.getItem('book')
       ? JSON.parse(localStorage.getItem('book'))
       : [];
+
+    if (!book.title || !book.author || !book.content) {
+      alert('모든 항목을 입력해주세요.');
+      return;
+    }
 
     localStorage.setItem('book', JSON.stringify([...parseBook, book]));
 
@@ -78,7 +82,7 @@ export default function Home() {
         </S.TextareaWrapper>
         <S.BookWrapper>
           {bookList.map((book, index) => (
-            <BookItem key={index} book={book}>
+            <BookItem key={index} book={book} onClick={onDelete}>
               {book.title}
               {book.author}
               {book.content}
