@@ -50,6 +50,19 @@ export default function Home() {
     });
   }
 
+  function onDelete(index) {
+    const parseBook = localStorage.getItem('book')
+      ? JSON.parse(localStorage.getItem('book'))
+      : [];
+
+    parseBook.splice(index, 1);
+    // setBookList(parseBook.filter((bookList, i) => i !== index));
+    // delete parseBook[index];
+    // delete parseBook['index'];
+    localStorage.setItem('book', JSON.stringify(parseBook));
+    setBookList(parseBook);
+  }
+
   return (
     <>
       <Header />
@@ -82,7 +95,7 @@ export default function Home() {
         </S.TextareaWrapper>
         <S.BookWrapper>
           {bookList.map((book, index) => (
-            <BookItem key={index} book={book} onClick={onDelete}>
+            <BookItem key={index} book={book} onClick={() => onDelete(index)}>
               {book.title}
               {book.author}
               {book.content}
