@@ -15,8 +15,7 @@ export const TextareaWrapper = styled.div`
 export const ItemWrapper = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 50px;
-  justify-content: center;
+  margin: 50px 0 0 40px;
 `;
 
 export const BookWrapper = styled.div`
