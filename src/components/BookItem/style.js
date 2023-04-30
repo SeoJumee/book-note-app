@@ -6,6 +6,8 @@ export const BookItem = styled.div`
   background-color: #f1f1f5;
   padding: 20px;
   position: relative;
+  overflow: auto;
+  word-break: normal;
 
   .title {
     font-size: 26px;
