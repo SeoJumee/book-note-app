@@ -56,9 +56,6 @@ export default function Home() {
       : [];
 
     parseBook.splice(index, 1);
-    // setBookList(parseBook.filter((bookList, i) => i !== index));
-    // delete parseBook[index];
-    // delete parseBook['index'];
     localStorage.setItem('book', JSON.stringify(parseBook));
     setBookList(parseBook);
   }
